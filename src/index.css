@@ -35,8 +35,9 @@ form, .mensajes {
   text-align: center;
 }
 .resultado {
-  border: 2px solid #050201;
+  border: 2px solid #d33f0f ;
   padding: 3rem 0;
+  color: #050201;
 }
 form label {
   text-align: center;
@@ -58,5 +59,54 @@ input[type="submit"]:disabled{
   margin: 0 auto;
 }
 .resultado p {
-  margin: 0;
+  margin: 5px;
+}
+
+input[type=submit].button-primary {
+  color: #FFF;
+  background-color: #fb8840;
+  border-color: #fb8840;
+}
+input[type=submit].button-primary:hover {
+  color: #FFF;
+  background-color: #d33f0f;
+  border-color: #d33f0f;
+}
+input[type=submit].button-primary:focus {
+  color: #FFF;
+  background-color:#fb8840;
+  border-color: #fb8840;
+}
+
+select {
+  height: 38px;
+  padding: 6px 10px;
+  border: 1px solid #fb8840;
+  border-radius: 4px;
+  box-shadow: none;
+  box-sizing: border-box;
+}
+select:hover{
+  border: 1px solid #fb8840;
+}
+select:active{
+  border: 1px solid #fb8840;
+}
+
+input[type=number] {
+  height: 38px;
+  padding: 6px 10px;
+  border: 1px solid #fb8840;
+  border-radius: 4px;
+  box-shadow: none;
+}
+
+input[type=number]:hover {
+  border: 1px solid #fb8840;
+}
+input[type=number]:active {
+  border: 1px solid #fb8840;
+}
+input[type=number]::selection  {
+  border: 1px solid #d33f0f;
 }

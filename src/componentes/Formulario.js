@@ -1,38 +1,76 @@
-import React from 'react'
+import React, {useState, Fragment} from 'react'
+import {calcularTotal} from '../helper'
+// le pasamos las props para modificarlas en el formulario
+const Formulario = (props) => {
+    
+    const {cantidad, guardarCantidad, plazo, guardarPlazo, total, guardarTotal, guardarCargando} = props
+    
+    // Definir state para el error
+    const [error, guardarError] = useState(false) 
 
-const Formulario = () => {
+    // Calcular prestamo con el submit
+
+    const calcularPrestamo = (e) => { 
+        e.preventDefault();
+
+        // Validar
+        if(cantidad === 0 || plazo === '') {
+            guardarError(true)
+            return
+        }
+
+        guardarError(false)
+
+        // Habilitar Spinner
+        guardarCargando(true)
+        
+        setTimeout(() => {
+            // Realizar Cotizacion
+            let total = calcularTotal(cantidad, plazo)
+            guardarTotal(total)
+            // Deshabilitar Spinner
+            guardarCargando(false)
+        }, 3000)
+       
+    }
+
     return(
-        <form>
-            <div className="row">
-                <div>
-                    <label>Cantidad Prestamo</label>
-                    <input 
-                        className="u-full-width" 
-                        type="number" 
-                        placeholder="Ejemplo: 3000" 
-                    />
+        <Fragment>
+            <form onSubmit={calcularPrestamo}>
+                <div className="row">
+                    <div>
+                        <label>Cantidad Prestamo</label>
+                        <input 
+                            className="u-full-width" 
+                            type="number" 
+                            placeholder="Ejemplo: 3000" 
+                            onChange={ (e) => { guardarCantidad( parseInt(e.target.value) ) } }
+                        />
+                    </div>
+                    <div>
+                        <label>Plazo para Pagar</label>
+                        <select 
+                            className="u-full-width"
+                            onChange={ (e) => { guardarPlazo( parseInt(e.target.value) ) } }
+                        >
+                            <option value="">Seleccionar</option>
+                            <option value="3">3 meses</option>
+                            <option value="6">6 meses</option>
+                            <option value="12">12 meses</option>
+                            <option value="24">24 meses</option>
+                        </select>
+                    </div>
+                    <div>
+                        <input 
+                            type="submit" 
+                            value="Calcular" 
+                            className="button-primary u-full-width" 
+                        />
+                    </div>
                 </div>
-                <div>
-                    <label>Plazo para Pagar</label>
-                    <select 
-                        className="u-full-width"
-                    >
-                        <option value="">Seleccionar</option>
-                        <option value="3">3 meses</option>
-                        <option value="6">6 meses</option>
-                        <option value="12">12 meses</option>
-                        <option value="24">24 meses</option>
-                    </select>
-                </div>
-                <div>
-                    <input 
-                        type="submit" 
-                        value="Calcular" 
-                        className="button-primary u-full-width" 
-                    />
-                </div>
-            </div>
-        </form>
+            </form>
+            {(error) ?   <p className="error">Todos los Campos son Obligatorios</p>  : null}
+        </Fragment>
     )
 }
 
