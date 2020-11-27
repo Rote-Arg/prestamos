@@ -38,7 +38,6 @@ function App() {
         guardarPlazo={guardarPlazo}
         cantidad={cantidad}
         guardarCantidad={guardarCantidad}
-        total={total}
         guardarTotal={guardarTotal}
         guardarCargando={guardarCargando}
         />

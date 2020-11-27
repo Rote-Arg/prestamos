@@ -3,7 +3,7 @@ import {calcularTotal} from '../helper'
 // le pasamos las props para modificarlas en el formulario
 const Formulario = (props) => {
     
-    const {cantidad, guardarCantidad, plazo, guardarPlazo, total, guardarTotal, guardarCargando} = props
+    const {cantidad, guardarCantidad, plazo, guardarPlazo, guardarTotal, guardarCargando} = props
     
     // Definir state para el error
     const [error, guardarError] = useState(false) 
@@ -23,7 +23,7 @@ const Formulario = (props) => {
 
         // Habilitar Spinner
         guardarCargando(true)
-        
+
         setTimeout(() => {
             // Realizar Cotizacion
             let total = calcularTotal(cantidad, plazo)
