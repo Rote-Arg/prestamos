@@ -24,7 +24,7 @@ function App() {
                   total={total}
                   plazo={plazo}
                   cantidad={cantidad}
-                 />
+                />
   }
 
   return (
